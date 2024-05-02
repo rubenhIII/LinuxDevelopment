@@ -6,7 +6,7 @@ Many of these tools gather their information from the /proc pseudo-filesystem.
 ## Process and Load Monitoring Utilities
 
 | Utility | Purpose | Package |
-| *-----* | *-----* | *-----* |
+| :-----: | :-----: | :-----: |
 | top | Process activity, dinamically updated. | procps |
 | uptime | How long the system is running and the average load | procps|
 | ps | Detailed information about processes | procps |
@@ -20,14 +20,14 @@ Many of these tools gather their information from the /proc pseudo-filesystem.
 
 ## Memory Monitoring Utilities
 | Utility | Purpose | Package |
-| *-----* | *-----* | *-----* |
+| :-----: | :-----: | :-----: |
 | free | Brief summary of memory usage | procps |
 | vmstat | Detailed virtual memory statistics annd block I/O, dynamically updated | procps |
 | pmap | Process memory map | procps |
 
 ## I/O Monitoring Utilities
 | Utility | Purpose | Package |
-| *-----* | *-----* | *-----* |
+| :-----: | :-----: | :-----: |
 | iostat | CPU utilization and I/O statistics | sysstat |
 | iotop | I/O statistics per process | iotop |
 | sar| Display and collect information about system activity | sysstat |
@@ -35,7 +35,7 @@ Many of these tools gather their information from the /proc pseudo-filesystem.
 
 ## Network Monitoring Utilities
 | Utility | Purpose | Package |
-| *-----* | *-----* | *-----* |
+| :-----: | :-----: | :-----: |
 | netstat | Detailed networking statistics | netstat |
 | iptraf | Gather information on network interfaces | iptraf |
 | tcpdump | Detailed analysis of network packets and traffic | tcpdump |
