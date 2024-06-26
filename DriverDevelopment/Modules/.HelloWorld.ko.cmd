@@ -1,0 +1,1 @@
+savedcmd_/home/rubendez21/Linux/Modules/HelloWorld.ko := ld -r -m elf_x86_64 -z noexecstack --no-warn-rwx-segments --build-id=sha1  -T scripts/module.lds -o /home/rubendez21/Linux/Modules/HelloWorld.ko /home/rubendez21/Linux/Modules/HelloWorld.o /home/rubendez21/Linux/Modules/HelloWorld.mod.o
