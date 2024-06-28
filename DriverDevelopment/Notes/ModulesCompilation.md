@@ -8,12 +8,12 @@ The Linux has its own build system for external modules based on *make*, which g
 
 ## Makefile
 
-obj-m := foo.o
+obj-m := foo.o  
 
-KDIR := /lib/modules/$(shell uname -r)/build
+KDIR := /lib/modules/$(shell uname -r)/build  
 
-all:
-	make -C $(KDIR) M=$(PWD) modules
-clean:
-	make -C $(KDIR) M=$(PWD) clean
+all:  
+	make -C $(KDIR) M=$(PWD) modules  
+clean:  
+	make -C $(KDIR) M=$(PWD) clean  
 
