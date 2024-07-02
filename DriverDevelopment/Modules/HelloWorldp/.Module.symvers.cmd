@@ -1,0 +1,1 @@
+savedcmd_/home/rubendez21/Linux/LinuxDevelopment/DriverDevelopment/Modules/HelloWorldp/Module.symvers :=  scripts/mod/modpost -M -m -a      -o /home/rubendez21/Linux/LinuxDevelopment/DriverDevelopment/Modules/HelloWorldp/Module.symvers -T /home/rubendez21/Linux/LinuxDevelopment/DriverDevelopment/Modules/HelloWorldp/modules.order -i Module.symvers -e 
