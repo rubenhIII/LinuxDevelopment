@@ -53,3 +53,40 @@ static void _ _exit cleanup_function(void)
 
 The cleanup function has no value to return, so it is declared ```void```. The ```_ _exit``` modifier marks the code as mbeing for module unload only. A function marked `_ _exit` can be called *only* at module unload or system shutdown time; any other use is an error. The *module_exit* declaration is neccesary to enable the kernel to find your cleanup functions.
 
+## Module parameters
+Several parameters that a driver needs to know can change from system to system. These parameters values can be assigned at load time by instmod or modprobe; the later can also read parameter assignment from its configuration file (/etc/modprobe.conf). The commands accept the specification of several types of values on the command line.
+Parameters are declared with the *module_param* macro, which is defined in *moduleparam.h*. ```module_param``` takes thre parameters: the name of the variable, its type, and a permission mask to be used for an accompanying sysfs entry. The macro should be placed outside of any function and is typically found near the head of the source file. For example, for two parameters, a string ```whom``` and an integer ```howmany```:
+
+```
+static char *whom = "Hello";   
+static int howmany = 1;   
+   
+module_param(howmany, int, S_IRUGO);   
+module_param(whom, charp, S_IRUGO);   
+
+```
+
+Numerous types are supported for module parameters:
+- bool
+- invbool
+- charp
+- int
+- long
+- short
+- uint
+- ulong
+- ushort
+
+Array parameters, where the values are supplied as a comma-separated list, are also supported by the module loader. To declare an array parameter:
+```
+module_param_array(name, type, num, perm);
+
+```
+
+To load the module:
+> $ insmod module howmany=10 whom="Tlaloc"
+
+The final parameter in *module_param* field is a permission value; you should use the definitions found in *<linux/stat.h>. This value controls who can acess the representation of the module parameter in sysfs. If perm is set to 0, there is no sysfs entry at all; otherwise, it appears under */sys/module* with the give set of permissions. Use ```S_IRUGO``` for a parameter that can be read by the world but cannot be changed.
+
+
+
