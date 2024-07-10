@@ -13,15 +13,19 @@
 MODULE_LICENSE("Dual BSD/GPL");
 
 static int dummy_major = DEV_MAJOR;
+static int dummy_minor = DEV_MINOR;
 static int dummy_nr_devs = 3;
+static dev_t dev;
 
 module_param(dummy_major, int, S_IRUGO);
 
 static int dummy_init(void)
 {
+	static int result = 0;
+
 	if (dummy_major){
 		dev = MKDEV(dummy_major, dummy_minor);
-		result = register_chrdev_region(dev, scull_nr_devs, "dummyCharDev");
+		result = register_chrdev_region(dev, dummy_nr_devs, "dummyCharDev");
 	} else{
 		result = alloc_chrdev_region(&dev, dummy_minor, dummy_nr_devs, "dummyCharDev");
 		dummy_major = MAJOR(dev);
@@ -37,5 +41,13 @@ static int dummy_init(void)
 
 static void dummy_exit(void)
 {
+	unregister_chrdev_region(dev, dummy_nr_devs);
 	printk(KERN_ALERT "Good Bye!!!\n");
 }
+
+module_init(dummy_init);
+module_exit(dummy_exit);
+
+
+
+
