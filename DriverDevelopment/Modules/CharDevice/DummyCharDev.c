@@ -25,9 +25,9 @@ static int dummy_init(void)
 
 	if (dummy_major){
 		dev = MKDEV(dummy_major, dummy_minor);
-		result = register_chrdev_region(dev, dummy_nr_devs, "dummyCharDev");
+		result = register_chrdev_region(dev, dummy_nr_devs, "DummyCharDev");
 	} else{
-		result = alloc_chrdev_region(&dev, dummy_minor, dummy_nr_devs, "dummyCharDev");
+		result = alloc_chrdev_region(&dev, dummy_minor, dummy_nr_devs, "DummyCharDev");
 		dummy_major = MAJOR(dev);
 	}
 	if (result < 0){
@@ -42,7 +42,7 @@ static int dummy_init(void)
 static void dummy_exit(void)
 {
 	unregister_chrdev_region(dev, dummy_nr_devs);
-	printk(KERN_ALERT "Good Bye!!!\n");
+	printk(KERN_ALERT "Good Bye Dummy!!!\n");
 }
 
 module_init(dummy_init);
