@@ -98,3 +98,31 @@ if (result < 0) {
 }
 ```
 ## Data Structures in Driver operations
+
+Most of the fundamental driver operations involve three importanr data structures, called **file_operations**, **file** and **inode**. 
+
+### File Operations
+The ```file_operations``` structure is how a char driver sets up a connection with a reserved device number for our use. The structure is defined in ```<linux/fs.h>```, and it is a collection of fuction pointers. Each open file (represented internally by a file structure) is associated with its own set of functions (by including a field called ```f_op``` that points to a ```file_operations``` structure). The operations are mostly in charge of implementing the system calls and are therefore, named *open*, *read*, and so on. Conventionally, a ```file_operations``` structure or a pointer to one is called ```fops```.
+
+### The file Structure
+```struct file```defined in ```<linux/fs.h>```, is the second most importanr data structure used in the device drivers. Here, file has nothing to do with the FILE pointers of user-space programs.
+
+The file structure represents an *open file*. (It is not specific to device drivers; every open file in the system has an associated struct file in the kernel spacce.) It is created by the kernel on *open* and is passed to any function that operates on the file, until the last close. After all instances of the file are closed, the kernel releases the data structure.
+
+In the kernel sources, a pointer to struct file is usually called either file or filp ("file pointer").
+
+### The inode Structure
+The *inode* structure is used by the kernel internally to represent files. Therefore, it is different from the file structure that represents an open file descriptor. There can be numerous file structures representing multiple open descriptors on a single file, but they all point to a single inode structure.
+
+the inode structure contains a great deal of information about the file. Only two fields of this structure are of interest for writing driver code:
+- dev_t i_rdev
+For inodes that represent device files, this field contains the actual device number.
+- struct cdev *i_cdev
+struct cdev is the kernel's internal structure that represents char devices; this field contains a pointer to that structure when the inode refers to a char device file.
+
+As a way of encouraging more portable programming, the kernel developers have added two macros that can be used to obtain the major and minor number from an inode:
+
+```
+unsigned int iminor (struct inode *inode);
+unsigned int imajor (struct inode *inode);
+```
