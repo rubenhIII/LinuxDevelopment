@@ -48,8 +48,8 @@ int main (int argc, char **argv){
 				Device.Semaphore.Queue->flush(Semaphore.Queue);
 				break;
 			case '6':
-				printf ("Device information\n:");
-				printf ("Major ID: %d Minor ID %d \n", Device.majorID, Device.minorID);
+				printf ("Device information\n");
+				printf ("Major ID: %d Minor ID: %d \n", Device.majorID, Device.minorID);
 				printf ("Current PID: %d \n", Device.Semaphore.getCurrentProcessID(&Device.Semaphore));
 		}
 	}
