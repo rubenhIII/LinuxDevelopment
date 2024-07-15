@@ -3,10 +3,26 @@
 #include <unistd.h>
 #include <string.h> 
 #include <time.h>
+#include <pthread.h>
 
 #include "device.h"
 
-int main (int argc, char **argv){
+void* runDriver(void* arg)
+{
+	int cont = 0;
+	semaphore *Semaphore = (semaphore*) arg;
+	while(Semaphore->running != 0){
+		if(Semaphore->currentProcess != NULL){
+			printf("Dispatching process ...\n");
+			usleep(5000000);
+			Semaphore->signal(Semaphore);
+		}
+	}
+	pthread_exit(NULL);
+}
+
+int main(int argc, char **argv)
+{
 
 	char ans;
 	int majorID = 1, minorID = 1;
@@ -18,6 +34,10 @@ int main (int argc, char **argv){
 		.minorID = minorID,
 		.Semaphore = Semaphore,
 	};
+
+	pthread_t ptid;
+	pthread_create(&ptid, NULL, &runDriver, &Device.Semaphore);
+	printf("Runing driver in background ...\n");
 
 	printf ("1. Enter a new process\n");
 	printf ("2. Free device\n");
@@ -56,6 +76,10 @@ int main (int argc, char **argv){
 	
 	Device.Semaphore.signal(&Device.Semaphore);
 	Device.Semaphore.Queue->flush(Semaphore.Queue);
+	Device.Semaphore.running = 0;
+
+	pthread_join(ptid, NULL);
+	pthread_exit(NULL);
 
 	return 0;
 }

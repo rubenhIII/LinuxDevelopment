@@ -10,6 +10,7 @@
 
 typedef struct semaphore {
 	int counter;
+	int running;
 	struct process *currentProcess;
 	struct process* (*newProcess)(void);
 	queue *Queue;
@@ -69,6 +70,7 @@ void semaphoreInit (semaphore *Semaphore) {
 	Semaphore->currentProcess = NULL;
 	Semaphore->Queue = Queue;
 	queueInit (Queue);
+	Semaphore->running = 1;
 	Semaphore->wait = wait;
 	Semaphore->signal = signal;
 	Semaphore->newProcess = newProcess;
