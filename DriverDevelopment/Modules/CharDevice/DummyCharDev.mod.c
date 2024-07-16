@@ -6,11 +6,6 @@
 #include <linux/vermagic.h>
 #include <linux/compiler.h>
 
-#ifdef CONFIG_UNWINDER_ORC
-#include <asm/orc_header.h>
-ORC_HEADER;
-#endif
-
 BUILD_SALT;
 BUILD_LTO_INFO;
 
@@ -32,28 +27,20 @@ MODULE_INFO(retpoline, "Y");
 #endif
 
 
-
-static const char ____versions[]
-__used __section("__versions") =
-	"\x10\x00\x00\x00\x7e\x3a\x2c\x12"
-	"_printk\0"
-	"\x1c\x00\x00\x00\xca\x39\x82\x5b"
-	"__x86_return_thunk\0\0"
-	"\x1c\x00\x00\x00\x2b\x2f\xec\xe3"
-	"alloc_chrdev_region\0"
-	"\x24\x00\x00\x00\x33\xb3\x91\x60"
-	"unregister_chrdev_region\0\0\0\0"
-	"\x18\x00\x00\x00\x5b\x19\xe8\x50"
-	"param_ops_int\0\0\0"
-	"\x14\x00\x00\x00\xbb\x6d\xfb\xbd"
-	"__fentry__\0\0"
-	"\x20\x00\x00\x00\x3b\x8f\xd7\x3f"
-	"register_chrdev_region\0\0"
-	"\x18\x00\x00\x00\x72\x3f\x86\xba"
-	"module_layout\0\0\0"
-	"\x00\x00\x00\x00\x00\x00\x00\x00";
+static const struct modversion_info ____versions[]
+__used __section("__versions") = {
+	{ 0xbdfb6dbb, "__fentry__" },
+	{ 0x5b8239ca, "__x86_return_thunk" },
+	{ 0x3fd78f3b, "register_chrdev_region" },
+	{ 0x27c1428c, "cdev_alloc" },
+	{ 0x6ee90a52, "cdev_add" },
+	{ 0xe3ec2f2b, "alloc_chrdev_region" },
+	{ 0x92997ed8, "_printk" },
+	{ 0x1ae367ea, "cdev_del" },
+	{ 0x6091b333, "unregister_chrdev_region" },
+	{ 0xe4bfbfca, "param_ops_int" },
+	{ 0xc4ae50da, "module_layout" },
+};
 
 MODULE_INFO(depends, "");
 
-
-MODULE_INFO(srcversion, "EC7B09C598107262BDC3FCE");
