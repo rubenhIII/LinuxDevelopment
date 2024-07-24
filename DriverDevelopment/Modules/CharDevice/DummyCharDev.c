@@ -1,4 +1,29 @@
+// 
 // Example of driver registation
+// Important Data Structures invoñved in thr most of the fundamental driver operations:
+// 1. File Structure:
+// 	Represents an open file in the kernel space.
+// 	Included in <linux/fs.h> as file.
+// 2. File Operations Structure:
+// 	Collection of function pointers.
+// 	Included in <linux/fs.h> as file_operations.
+// 3. Inode Structure:
+// 	Used by the kernel internally to represent files.
+// 	Included in <linux/cdev.h> as cdev.
+//
+// 	DRIVER PROCESSES
+// Allocate Device Number (get a major number STATIC | DYNAMIC) -> 
+// Char Device Allocation (STANDALONE | EMBEDED) ->
+// File Operations Assignment ->
+// Char Device Register (cdev_add)
+// 
+// Create nodes at /dev/ with mknod. It is usally carried out by a shell script.
+//
+//
+// To remove
+// Delete cdev -> Unregister/Deallocate Device Number
+
+
 
 #define DEV_MAJOR 0
 #define DEV_MINOR 0
@@ -22,7 +47,6 @@ struct cdev *my_cdev;
 static loff_t mllseek(struct file*, loff_t, int);
 static ssize_t mread(struct file*, char __user*, size_t, loff_t*);
 static ssize_t mwrite(struct file*, const char __user*, size_t, loff_t*);
-//static int mioctl(struct inode*, struct file*, unsigned int, unsigned long);
 static int mopen(struct inode*, struct file*);
 static int mrelease(struct inode*, struct file*);
 
@@ -33,7 +57,6 @@ static struct file_operations my_fops = {
 	.llseek = mllseek,
 	.read = mread,
 	.write = mwrite,
-	//.ioctl = mioctl,
 	.open = mopen,
 	.release = mrelease,
 };
