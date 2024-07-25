@@ -2,6 +2,6 @@
 
 int main()
 {
-	puts("Hello World!");
+	puts("Hello World to Linux Development\n!");
 	return 0;
 }
