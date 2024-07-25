@@ -1,1 +1,0 @@
-cmd_/home/ruben/Proyectos/Github/LinuxDevelopment/DriverDevelopment/Modules/CharDevice/DummyCharDev.mod := printf '%s\n'   DummyCharDev.o | awk '!x[$$0]++ { print("/home/ruben/Proyectos/Github/LinuxDevelopment/DriverDevelopment/Modules/CharDevice/"$$0) }' > /home/ruben/Proyectos/Github/LinuxDevelopment/DriverDevelopment/Modules/CharDevice/DummyCharDev.mod

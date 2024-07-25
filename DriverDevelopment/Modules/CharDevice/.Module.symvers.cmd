@@ -1,1 +1,0 @@
-cmd_/home/ruben/Proyectos/Github/LinuxDevelopment/DriverDevelopment/Modules/CharDevice/Module.symvers :=  sed 's/ko$$/o/'  /home/ruben/Proyectos/Github/LinuxDevelopment/DriverDevelopment/Modules/CharDevice/modules.order | scripts/mod/modpost -m      -o /home/ruben/Proyectos/Github/LinuxDevelopment/DriverDevelopment/Modules/CharDevice/Module.symvers -e -i Module.symvers -T - 
