@@ -126,3 +126,33 @@ As a way of encouraging more portable programming, the kernel developers have ad
 unsigned int iminor (struct inode *inode);
 unsigned int imajor (struct inode *inode);
 ```
+
+## Char Device Registration
+The kernel uses structures of type struct cdev to represent char devices internally. Before the kernel invokes your device's operations, you must allocate and register one or more of these structures. To do so, your code should include ```<linux/cdev.h>```, where the structure and its associated helper functions are defined.
+
+There are two ways of allocating and initializing one of these structures. If you wish to obtain a stand alone cdev structure at run time, you may do so with code such as:
+
+```
+struct cdev *my_cdev = cdev_alloc();
+my_cdev->ops = &my_fops;
+```
+
+If it is needed to embed the cdev structure within a device-specific structure of your own, you should initialize the structure that you have already allocated with:
+
+```
+void cdev_init (struct cdev *cdev, struct file_operations *fops);
+```
+Either way, there is one other struct cdev field that you need to initialize. Like the file_operations structure, struct cdev has an owner field that should be set to THIS_MODULE.
+
+Once the cdev structure is set up, the final step is to tell the kernel avout it with a call to:
+
+```
+int cdev_add (struct cdev *dev, dev_t num, unsigned int count);
+```
+Here, dev is the cdev structure, num is the first device number to which this device responds, and count is the number of device numbers that should be associated with the device.
+To remove a char device from the system, call:
+
+```
+void cdev_del (struct cdev *dev);
+```
+

@@ -1,0 +1,28 @@
+commit 2ae4bda5350080dcb9372146de16b1412df40044
+Author:     Ruben Hernandez <rubendez21@gmail.com>
+AuthorDate: Wed Jul 24 20:58:31 2024 -0600
+Commit:     Ruben Hernandez <rubendez21@gmail.com>
+CommitDate: Wed Jul 24 20:58:31 2024 -0600
+
+    Patch example updated
+    
+    Signed-off-by: Ruben Hernandez <rubendez21@gmail.com>
+---
+ .../A_Begginers_Guide_to_Linux_Kernel_Development/Code/patch.c  | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/OpenSourceSoftwareDevelopment/A_Begginers_Guide_to_Linux_Kernel_Development/Code/patch.c b/OpenSourceSoftwareDevelopment/A_Begginers_Guide_to_Linux_Kernel_Development/Code/patch.c
+index 04e7f20..ee7bea8 100644
+--- a/OpenSourceSoftwareDevelopment/A_Begginers_Guide_to_Linux_Kernel_Development/Code/patch.c
++++ b/OpenSourceSoftwareDevelopment/A_Begginers_Guide_to_Linux_Kernel_Development/Code/patch.c
+@@ -2,6 +2,6 @@
+ 
+ int main()
+ {
+-	puts("Hello World!");
++	puts("Hello World to Linux Development\n!");
+ 	return 0;
+ }
+-- 
+2.39.2
+
